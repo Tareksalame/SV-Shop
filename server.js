@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 const bp = require('body-parser');
 const db = require('mongoose');
+require('dotenv').config();
 
+const dbURI = process.env.MONGODB_URI;
 app.use(express.static('pages'));
 app.use(bp.urlencoded({extended: false}));
 app.use(bp.json());
-db.connect('mongodb+srv://tareqsalame:Ilovesimba11@tarek.tskgvib.mongodb.net/svshop');
+db.connect(dbURI);
 
 const usersSchema = db.Schema({
     fullName: String,
